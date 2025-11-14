@@ -1,8 +1,39 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import "./govuk.scss";
+import GovukHeader from "./components/GovukHeader";
+import GovukFooter from "./components/GovukFooter";
 
-const geistSans = Geist({
+
+export const metadata: Metadata = {
+  title: "My GOV.UK service",
+  description: "Prototype using Next.js + GOVUK Frontent",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en" className="govuk-template--rebranded">
+      <body className="govuk-template__body">
+
+        <GovukHeader />
+
+          <div className="govuk-width-container">
+            <main className="govuk-main-wrapper" id="main-content" role="main">
+                {children}         
+            </main>
+          </div>
+
+        <GovukFooter />
+        
+      </body>
+    </html>
+  );
+}
+
+/* const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
@@ -30,3 +61,4 @@ export default function RootLayout({
     </html>
   );
 }
+*/
