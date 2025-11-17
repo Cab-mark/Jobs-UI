@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./govuk.scss";
+import GovukInit from "./GovukInit";
 import GovukHeader from "./components/GovukHeader";
 import GovukFooter from "./components/GovukFooter";
 
@@ -22,7 +23,7 @@ export default function RootLayout({
 
           <div className="govuk-width-container">
             <main className="govuk-main-wrapper" id="main-content" role="main">
-                {children}         
+                <GovukInit>{children}</GovukInit>         
             </main>
           </div>
 
