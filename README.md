@@ -2,7 +2,12 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+install govuk frontend:
+```bash
+npm install govuk-frontend --save
+```
+
+Run the development server:
 
 ```bash
 npm run dev
