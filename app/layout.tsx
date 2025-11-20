@@ -37,11 +37,9 @@ export default function RootLayout({
 
         <ServiceNavigation links={navLinks} />
 
-          <div className="govuk-width-container">
             <main className="govuk-main-wrapper" id="main-content" role="main">
                 <GovukInit>{children}</GovukInit>         
             </main>
-          </div>
 
         <GovukFooter 
           links={footerLinks}

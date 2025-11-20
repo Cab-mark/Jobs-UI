@@ -1,0 +1,19 @@
+.govuk-hero {
+    width: 100%;
+    background-color: $govuk-brand-colour;
+    padding: govuk-spacing(6) 0;
+
+    .govuk-label, .govuk-heading-xl {
+        color: govuk-colour("white");
+    }
+
+    .govuk-width-container {
+        padding-left: govuk-spacing(3);
+        padding-right: govuk-spacing(3);
+    }
+
+    @include govuk-media-query($from: desktop) {
+        padding: govuk-spacing(7) 0;
+    }
+
+}
