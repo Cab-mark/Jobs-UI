@@ -1,9 +1,26 @@
+.govuk-hero--light {
+    width: 100%;
+    background-color: #f4f8fb;
+    padding: govuk-spacing(6) 0;
+    border: 1px solid #8eb8dc;
+
+    .govuk-width-container {
+        padding-left: govuk-spacing(3);
+        padding-right: govuk-spacing(3);
+    }
+
+    @include govuk-media-query($from: desktop) {
+        padding-top: govuk-spacing(6);
+        padding-bottom: govuk-spacing(0);
+    }
+}
+
 .govuk-hero {
     width: 100%;
     background-color: $govuk-brand-colour;
     padding: govuk-spacing(6) 0;
 
-    .govuk-label, .govuk-heading-xl {
+    .govuk-label, .govuk-heading-xl, .govuk-heading-l {
         color: govuk-colour("white");
     }
 

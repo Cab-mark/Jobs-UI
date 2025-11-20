@@ -5,6 +5,7 @@ import Skip from "./components/Skip";
 import GovukHeader from "./components/GovukHeader";
 import ServiceNavigation from "./components/ServiceNavigation";
 import GovukFooter from "./components/GovukFooter";
+import PhaseBanner from "./components/PhaseBanner";
 
 
 export const metadata: Metadata = {
@@ -36,6 +37,8 @@ export default function RootLayout({
         <GovukHeader />
 
         <ServiceNavigation links={navLinks} />
+        
+        <PhaseBanner />
 
             <main className="govuk-main-wrapper" id="main-content" role="main">
                 <GovukInit>{children}</GovukInit>         
