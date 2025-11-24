@@ -9,7 +9,10 @@ import PhaseBanner from "./components/PhaseBanner";
 
 
 export const metadata: Metadata = {
-  title: "Civil Service Jobs",
+  title: {
+    default: "Civil Service Jobs",
+    template: "%s | Civil Service Jobs",
+  },
   description: "A job search platform for the UK Civil Service.",
 };
 
@@ -36,6 +39,7 @@ export default function RootLayout({
         <link rel="icon" sizes="48x48" href="/assets/rebrand/images/favicon.ico" />
         <link rel="icon" sizes="any" href="/assets/rebrand/images/favicon.svg" type="image/svg+xml" />
         <link rel="mask-icon" href="/assets/rebrand/images/govuk-icon-mask.svg" color="#1d70b8" />
+        <link rel="apple-touch-icon" href="/assets/rebrand/images/govuk-icon-180.png" />
       </head>
       <body className="govuk-template__body govuk-frontend-supported">
         <GovukInit />

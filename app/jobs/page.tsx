@@ -9,6 +9,10 @@ const JobLinks = [
     { location: 'Benton Park Road, Newcastle upon Tyne, NE7 7LX', organisation: 'HM Revenue and Customs', id: '9489', href: '/job/9489', text: 'Dentist', closingDate: '5 January 2026', salary: '£99,000' },
 ]
 
+export const metadata = {
+  title: 'Search results',
+  description: 'Browse and apply for jobs in the UK Civil Service.',
+};
 
 export default function Jobs() {
   return (
