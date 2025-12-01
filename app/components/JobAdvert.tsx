@@ -64,7 +64,6 @@ export default function JobAdvert({ job }: { job: Job }) {
       <h2 id="before-you-apply" className="govuk-heading-l">Before you apply</h2>
       <p className="govuk-body">You must read the following information before applying for this job.</p>
       <div className="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
-      {job.applyDetail && (
       <div className="govuk-accordion__section">
         <div className="govuk-accordion__section-header">
           <h3 className="govuk-accordion__section-heading">
@@ -73,23 +72,49 @@ export default function JobAdvert({ job }: { job: Job }) {
             </span>
           </h3>
         </div>
+      {job.applyDetail && (
         <div id="accordion-default-content-1" className="govuk-accordion__section-content">
           {renderTextWithBullets(job.applyDetail || "", "applyDetail") }
         </div>
-      </div>
       )}
-      <div className="govuk-accordion__section">
-        <div className="govuk-accordion__section-header">
-          <h3 className="govuk-accordion__section-heading">
-            <span className="govuk-accordion__section-button" id="accordion-default-heading-2">
-              Diversity and inclusion
-            </span>
-          </h3>
-        </div>
-        <div id="accordion-default-content-2" className="govuk-accordion__section-content">
-          <p className="govuk-body">This is the content for diversity and inclusion.</p>
-        </div>
       </div>
+      {(job.disabilityConfident || job.diversityStatement || job.veteranScheme || job.prisonScheme) && (
+        <div className="govuk-accordion__section">
+          <div className="govuk-accordion__section-header">
+            <h3 className="govuk-accordion__section-heading">
+              <span className="govuk-accordion__section-button" id="accordion-default-heading-2">
+                Diversity and inclusion
+              </span>
+            </h3>
+          </div>
+          <div id="accordion-default-content-2" className="govuk-accordion__section-content">
+            {job.disabilityConfident && (
+              <>
+                <h3 className="govuk-heading-s">Disability Confident</h3>
+                <p className="govuk-body">{job.disabilityConfident}</p>
+              </>
+            )}
+            {job.diversityStatement && (
+              <>
+                <h3 className="govuk-heading-s">Diversity statement</h3>
+                <p className="govuk-body">{job.diversityStatement}</p>
+              </>
+            )}
+            {job.veteranScheme && (
+              <>
+                <h3 className="govuk-heading-s">Veteran initiatives</h3>
+                <p className="govuk-body">{job.veteranScheme}</p>
+              </>
+            )}
+            {job.prisonScheme && (
+              <>
+                <h3 className="govuk-heading-s">Prison leaver scheme</h3>
+                <p className="govuk-body">{job.prisonScheme}</p>
+              </>
+            )}
+          </div>
+        </div>
+      )}
       {job.nationalityRequirement && (
       <div className="govuk-accordion__section">
         <div className="govuk-accordion__section-header">
@@ -104,18 +129,50 @@ export default function JobAdvert({ job }: { job: Job }) {
         </div>
       </div>
       )}
-      <div className="govuk-accordion__section">
-        <div className="govuk-accordion__section-header">
-          <h3 className="govuk-accordion__section-heading">
-            <span className="govuk-accordion__section-button" id="accordion-default-heading-4">
-              Eligibility checks
-            </span>
-          </h3>
+      {(job.eligibilityCheck || job.criminalRecordCheck) && (
+        <div className="govuk-accordion__section">
+          <div className="govuk-accordion__section-header">
+            <h3 className="govuk-accordion__section-heading">
+              <span className="govuk-accordion__section-button" id="accordion-default-heading-4">
+                Eligibility checks
+              </span>
+            </h3>
+          </div>
+          <div id="accordion-default-content-4" className="govuk-accordion__section-content">
+            {job.eligibilityCheck && (
+              <>
+                <h3 className="govuk-heading-s">Security check</h3>
+                <p className="govuk-body">{job.eligibilityCheck}</p>
+              </>
+            )}
+            {job.criminalRecordCheck && (
+              <>
+                <h3 className="govuk-heading-s">Criminal record check</h3>
+                <p className="govuk-body">{job.criminalRecordCheck}</p>
+              </>
+            )}
+          </div>
         </div>
-        <div id="accordion-default-content-4" className="govuk-accordion__section-content">
-          <p className="govuk-body">This is the content for Eligibility checks.</p>
+      )}
+      {(job.workingForTheCivilService || job.complaintsInfo) && (
+        <div className="govuk-accordion__section">
+          <div className="govuk-accordion__section-header">
+            <h3 className="govuk-accordion__section-heading">
+              <span className="govuk-accordion__section-button" id="accordion-default-heading-4">
+                Civil Service Commission
+              </span>
+            </h3>
+          </div>
+          <div id="accordion-default-content-4" className="govuk-accordion__section-content">
+            {job.workingForTheCivilService && (
+              <p className="govuk-body">{job.workingForTheCivilService}</p>
+            )}
+            {job.complaintsInfo && (
+              <p className="govuk-body">{job.complaintsInfo}</p>
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </div>
     {job.applyUrl && (
         <a

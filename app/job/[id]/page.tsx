@@ -34,6 +34,23 @@ export default async function JobAdvertPage({ params }: JobAdvertProps) {
         <a href="#what-we-are-looking-for" className="govuk-link govuk-body">What we are looking for</a><br />
         <a href="#contacts" className="govuk-link govuk-body">Contact us</a><br />
         <a href="#before-you-apply" className="govuk-link govuk-body">Before you apply</a>
+        {job.attachments && job.attachments.length > 0 && (
+          <>
+            <h3 className="govuk-heading-s govuk-!-margin-top-4">Attachments</h3>
+            <ul className="govuk-list">
+              {job.attachments.map((att, idx) => (
+                <li key={att.href}>
+                  <a href={att.href} className="govuk-link" target="_blank" rel="noopener noreferrer">
+                    {att.docName || 'Attachment'}
+                  </a>
+                  {att.docFormat && (
+                    <span className="govuk-body govuk-!-margin-left-1">({att.docFormat.toUpperCase()}{att.fileSize ? `, ${att.fileSize}` : ''})</span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
       </div>
       <div className="govuk-grid-column-three-quarters">
         <JobAdvert job={job as Job} />
