@@ -40,7 +40,7 @@ export default function Pagination({
         pages.push('ellipsis');
       }
       
-      // Show pages around current page
+      // Show pages around current page (excluding first and last)
       const start = Math.max(2, currentPage - 1);
       const end = Math.min(totalPages - 1, currentPage + 1);
       
@@ -52,8 +52,8 @@ export default function Pagination({
         pages.push('ellipsis');
       }
       
-      // Always show last page
-      if (totalPages > 1) {
+      // Always show last page (if not already added in the loop)
+      if (end < totalPages) {
         pages.push(totalPages);
       }
     }
