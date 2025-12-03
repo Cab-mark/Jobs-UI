@@ -12,10 +12,11 @@ function HeroHorizontalInner() {
   const searchParams = useSearchParams();
   const keyword = searchParams.get('q') || '';
   const location = searchParams.get('l') || '';
+  const { total } = require('../lib/mockJobs').getJobSearchResponse();
   return (
     <div className="govuk-hero--light">
       <div className="govuk-width-container">
-        <h1 className="govuk-heading-l">243 search results</h1>
+        <h1 className="govuk-heading-l">{total} search results</h1>
         <form action="/jobs" method="get" className="govuk-grid-row">
           <div className="govuk-grid-column-full">
             <div className="govuk-form-group govuk-grid-column-one-third">

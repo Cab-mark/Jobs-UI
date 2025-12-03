@@ -2,7 +2,7 @@
 
 export default function Filter() {
   return (
-    <div className="govuk-grid-column-one-third">
+    <>
       <h2 className="govuk-heading-m">Filter</h2>
       {/* Mobile: GOV.UK Details component */}
       <details className="govuk-details filter-mobile" data-module="govuk-details">
@@ -124,6 +124,6 @@ export default function Filter() {
           .filter-desktop { display: none; }
         }
       `}</style>
-    </div>
+    </>
   );
 }

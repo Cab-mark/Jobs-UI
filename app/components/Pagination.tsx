@@ -100,7 +100,7 @@ export default function Pagination({
                 key={`ellipsis-${index}`}
                 className="govuk-pagination__item govuk-pagination__item--ellipsis"
               >
-                &ctdot;
+                &#8230;
               </li>
             );
           }

@@ -284,6 +284,234 @@ const jobs: Job[] = [
       fileSize: '120 kb'
     }
   ]
+},
+{
+  personalSpec: 'Strong analytical skills required.',
+  contacts: false,
+  applyDetail: 'Apply online.',
+  recruitmentEmail: 'recruitment@hmrc.gov.uk',
+  assignmentType: 'Permanent',
+  grade: 'Grade 6',
+  jobNumbers: 2,
+  description: 'Work on tax policy analysis.',
+  location: [{
+    paoText: '100 Parliament Street',
+    townName: 'London',
+    postTown: 'London',
+    postcode: 'SW1A 2BQ',
+    formattedAddress: '100 Parliament Street, London, SW1A 2BQ'
+  }],
+  organisation: 'HM Revenue & Customs',
+  id: 'hmrc-100',
+  title: 'Tax Policy Analyst',
+  salary: '£52,000',
+  closingDate: '10 January 2026'
+},
+{
+  personalSpec: 'Experience in digital transformation.',
+  contacts: true,
+  contactName: 'John Smith',
+  contactEmail: 'john.smith@cabinetoffice.gov.uk',
+  recruitmentEmail: 'jobs@cabinetoffice.gov.uk',
+  assignmentType: 'Fixed Term',
+  grade: 'Grade 7',
+  jobNumbers: 1,
+  description: 'Lead digital projects for government.',
+  location: [{
+    paoText: '70 Whitehall',
+    townName: 'London',
+    postTown: 'London',
+    postcode: 'SW1A 2AS',
+    formattedAddress: '70 Whitehall, London, SW1A 2AS'
+  }],
+  organisation: 'Cabinet Office',
+  id: 'cab-70',
+  title: 'Digital Transformation Lead',
+  salary: '£60,000',
+  closingDate: '15 January 2026',
+  applyDetail: ""
+},
+{
+  personalSpec: 'Excellent communication skills.',
+  contacts: false,
+  applyDetail: 'Submit CV and cover letter.',
+  recruitmentEmail: 'recruitment@mod.gov.uk',
+  assignmentType: 'Permanent',
+  grade: 'Grade 7',
+  jobNumbers: 1,
+  description: 'Support defence communications.',
+  location: [{
+    paoText: 'MOD Main Building',
+    townName: 'London',
+    postTown: 'London',
+    postcode: 'SW1A 2HB',
+    formattedAddress: 'MOD Main Building, London, SW1A 2HB'
+  }],
+  organisation: 'Ministry of Defence',
+  id: 'mod-001',
+  title: 'Communications Officer',
+  salary: '£48,000',
+  closingDate: '20 January 2026'
+},
+{
+  personalSpec: 'Project management experience.',
+  contacts: true,
+  contactName: 'Sarah Lee',
+  contactEmail: 'sarah.lee@homeoffice.gov.uk',
+  recruitmentEmail: 'jobs@homeoffice.gov.uk',
+  assignmentType: 'Permanent',
+  grade: 'SEO',
+  jobNumbers: 1,
+  description: 'Manage security projects.',
+  location: [{
+    paoText: '2 Marsham Street',
+    townName: 'London',
+    postTown: 'London',
+    postcode: 'SW1P 4DF',
+    formattedAddress: '2 Marsham Street, London, SW1P 4DF'
+  }],
+  organisation: 'Home Office',
+  id: 'ho-002',
+  title: 'Security Project Manager',
+  salary: '£55,000',
+  closingDate: '25 January 2026',
+  applyDetail: ""
+},
+{
+  personalSpec: 'Experience in international relations.',
+  contacts: true,
+  contactName: 'Pierre Dubois',
+  contactEmail: 'pierre.dubois@fco.gov.uk',
+  recruitmentEmail: 'recruitment@fco.gov.uk',
+  assignmentType: 'Permanent',
+  grade: 'Grade 7',
+  jobNumbers: 1,
+  description: 'Support diplomatic missions in Paris.',
+  location: [{
+    countryName: 'France',
+    countryCode: 'FR',
+    locationDisplay: 'British Embassy, Paris'
+  }],
+  organisation: 'Foreign, Commonwealth & Development Office',
+  id: 'fco-paris',
+  title: 'Diplomatic Support Officer',
+  salary: '€58,000',
+  closingDate: '30 January 2026',
+  applyDetail: ""
+},
+{
+  personalSpec: 'Legal background preferred.',
+  contacts: false,
+  applyDetail: 'Apply via portal.',
+  recruitmentEmail: 'recruitment@justice.gov.uk',
+  assignmentType: 'Permanent',
+  grade: 'Grade 6',
+  jobNumbers: 1,
+  description: 'Advise on legal matters.',
+  location: [{
+    paoText: '102 Petty France',
+    townName: 'London',
+    postTown: 'London',
+    postcode: 'SW1H 9AJ',
+    formattedAddress: '102 Petty France, London, SW1H 9AJ'
+  }],
+  organisation: 'Ministry of Justice',
+  id: 'moj-102',
+  title: 'Legal Advisor',
+  salary: '£58,000',
+  closingDate: '5 February 2026'
+},
+{
+  personalSpec: 'Experience in education policy.',
+  contacts: true,
+  contactName: 'Emily Clark',
+  contactEmail: 'emily.clark@education.gov.uk',
+  recruitmentEmail: 'jobs@education.gov.uk',
+  assignmentType: 'Fixed Term',
+  grade: 'Grade 7',
+  jobNumbers: 1,
+  description: 'Develop education policy.',
+  location: [{
+    paoText: 'Sanctuary Buildings',
+    townName: 'London',
+    postTown: 'London',
+    postcode: 'SW1P 3BT',
+    formattedAddress: 'Sanctuary Buildings, London, SW1P 3BT'
+  }],
+  organisation: 'Department for Education',
+  id: 'dfe-001',
+  title: 'Education Policy Advisor',
+  salary: '£50,000',
+  closingDate: '10 February 2026',
+  applyDetail: ""
+},
+{
+  personalSpec: 'Experience in healthcare management.',
+  contacts: false,
+  applyDetail: 'Apply online.',
+  recruitmentEmail: 'jobs@nhs.uk',
+  assignmentType: 'Permanent',
+  grade: 'Band 8a',
+  jobNumbers: 1,
+  description: 'Manage hospital operations.',
+  location: [{
+    paoText: 'St Thomas Hospital',
+    townName: 'London',
+    postTown: 'London',
+    postcode: 'SE1 7EH',
+    formattedAddress: 'St Thomas Hospital, London, SE1 7EH'
+  }],
+  organisation: 'NHS England',
+  id: 'nhs-001',
+  title: 'Hospital Operations Manager',
+  salary: '£62,000',
+  closingDate: '15 February 2026'
+},
+{
+  personalSpec: 'Experience in transport planning.',
+  contacts: true,
+  contactName: 'Tom Evans',
+  contactEmail: 'tom.evans@dft.gov.uk',
+  recruitmentEmail: 'jobs@dft.gov.uk',
+  assignmentType: 'Permanent',
+  grade: 'SEO',
+  jobNumbers: 1,
+  description: 'Plan transport infrastructure.',
+  location: [{
+    paoText: 'Great Minster House',
+    townName: 'London',
+    postTown: 'London',
+    postcode: 'SW1P 4DR',
+    formattedAddress: 'Great Minster House, London, SW1P 4DR'
+  }],
+  organisation: 'Department for Transport',
+  id: 'dft-002',
+  title: 'Transport Planner',
+  salary: '£54,000',
+  closingDate: '20 February 2026',
+  applyDetail: ""
+},
+{
+  personalSpec: 'Experience in overseas development.',
+  contacts: true,
+  contactName: 'Aisha Khan',
+  contactEmail: 'aisha.khan@fco.gov.uk',
+  recruitmentEmail: 'recruitment@fco.gov.uk',
+  assignmentType: 'Permanent',
+  grade: 'Grade 7',
+  jobNumbers: 1,
+  description: 'Support development projects in Kenya.',
+  location: [{
+    countryName: 'Kenya',
+    countryCode: 'KE',
+    locationDisplay: 'British High Commission, Nairobi'
+  }],
+  organisation: 'Foreign, Commonwealth & Development Office',
+  id: 'fco-kenya',
+  title: 'Development Project Officer',
+  salary: 'KES 3,000,000',
+  closingDate: '28 February 2026',
+  applyDetail: ""
 }
 ]
 
@@ -317,7 +545,7 @@ export function getJobById(id: string): Job | undefined {
   return jobs.find((job) => job.id === id);
 }
 
-export function getPaginatedJobs(page: number = 1, pageSize: number = 3): JobSearchResponse {
+export function getPaginatedJobs(page: number = 1, pageSize: number = 10): JobSearchResponse {
   const validPage = Math.max(1, page);
   const totalPages = Math.ceil(jobs.length / pageSize);
   const clampedPage = Math.min(validPage, Math.max(1, totalPages));

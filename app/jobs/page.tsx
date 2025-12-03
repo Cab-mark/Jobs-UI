@@ -24,12 +24,11 @@ export default async function Jobs({ searchParams }: JobsPageProps) {
       <HeroHorizontal />
       <div className="govuk-width-container govuk-!-margin-top-6">
         <div className="govuk-grid-row">
-          <Filter />
-          <JobResult jobs={results} />
-        </div>
-        <div className="govuk-grid-row">
-          <div className="govuk-grid-column-one-third"></div>
+          <div className="govuk-grid-column-one-third">
+            <Filter />
+          </div>
           <div className="govuk-grid-column-two-thirds">
+            <JobResult jobs={results} />
             <Pagination
               currentPage={page}
               totalPages={totalPages}

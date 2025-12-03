@@ -4,7 +4,7 @@ import { Job } from '../lib/mockJobs';
 export default function JobResult({ 
   jobs}: { jobs: Job[] }) {
   return (
-    <div className="govuk-grid-column-two-thirds">
+    <>
       <ol className="govuk-list govuk-list--spaced">
         {jobs.map((job) => (
           <li key={job.id} className="govuk-!-margin-bottom-6">
@@ -68,6 +68,6 @@ export default function JobResult({
           </li>
         ))}
         </ol>
-    </div>
+    </>
   );
 }
