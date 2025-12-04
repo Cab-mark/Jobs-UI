@@ -1,8 +1,12 @@
 export type { Job } from "./jobTypes";
 import type { Job, JobAttachment, fixedLocations, overseasLocations, JobSearchResponse } from "./jobTypes";
-
-import { jobsData } from "./jobs.local";
-const jobs: Job[] = jobsData;
+let jobs: Job[];
+if (process.env.NODE_ENV === "development") {
+  jobs = require("./jobs.local").jobsData;
+} else {
+  jobs = [];
+  // TODO: Replace with production jobs data source or API
+}
 
 export function getJobs(): Job[] {
   return jobs;

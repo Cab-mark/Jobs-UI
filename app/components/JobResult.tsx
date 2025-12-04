@@ -1,8 +1,24 @@
 import Link from 'next/link';
 import { Job } from '../lib/jobs';
 
-export default function JobResult({ 
-  jobs}: { jobs: Job[] }) {
+export default function JobResult({ jobs }: { jobs: Job[] }) {
+  if (!jobs || jobs.length === 0) {
+    return (
+      <div className="govuk-!-margin-bottom-6">
+        <h2 className="govuk-heading-m">No jobs found</h2>
+        <p className="govuk-body">We couldn't find any jobs matching your search criteria.</p>
+        <ul className="govuk-list govuk-list--bullet">
+          <li>Try broadening your search terms</li>
+          <li>Check for spelling errors</li>
+          <li>Remove or change filters</li>
+          <li>Browse all jobs to see what's available</li>
+        </ul>
+        <p className="govuk-body">
+          <Link className="govuk-link" href="/jobs">Browse all jobs</Link>
+        </p>
+      </div>
+    );
+  }
   return (
     <>
       <ol className="govuk-list govuk-list--spaced">
