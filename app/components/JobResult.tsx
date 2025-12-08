@@ -44,15 +44,11 @@ export default function JobResult({ jobs }: { jobs: JobResultItem[] }) {
                         return loc.locationDisplay || loc.countryName;
                       } else {
                         // fixedLocations
-                        if (loc.formattedAddress) {
-                          return loc.formattedAddress;
-                        }
                         const address = [
-                          loc.saoText,
                           loc.paoText,
+                          loc.saoText,
                           loc.streetDescription,
-                          loc.locality,
-                          loc.postTown,
+                          loc.townName,
                           loc.postcode
                         ]
                           .filter(Boolean)

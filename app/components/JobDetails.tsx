@@ -8,7 +8,7 @@ export default function JobDetails({ job }: { job: Job }) {
       <dl className="govuk-summary-list">
         <div className="govuk-summary-list__row">
           <dt className="govuk-summary-list__key">Job reference</dt>
-          <dd className="govuk-summary-list__value">{job.id}</dd>
+          <dd className="govuk-summary-list__value">{job.externalId}</dd>
         </div>
         <div className="govuk-summary-list__row">
           <dt className="govuk-summary-list__key">Location</dt>
@@ -22,17 +22,11 @@ export default function JobDetails({ job }: { job: Job }) {
                       // overseasLocations
                       return loc.locationDisplay || loc.countryName;
                     } else {
-                      // fixedLocations
-                      if (loc.formattedAddress) {
-                        return loc.formattedAddress;
-                      }
                       const address = [
                         loc.saoText,
                         loc.paoText,
                         loc.streetDescription,
-                        loc.locality,
                         loc.townName,
-                        loc.postTown,
                         loc.postcode
                       ]
                         .filter(Boolean)

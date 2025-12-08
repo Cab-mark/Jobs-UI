@@ -11,7 +11,54 @@ export interface JobResultItem {
   profession?: Profession;
   approach?: Approach;
 }
+
+export interface JobSearchResponse {
+  results: Job[];
+  total: number;
+  page: number;
+  pageSize: number;
+  totalPages: number;
+  query: string | null;
+  appliedFilters: string | null;
+}
+
 // Type definitions for job board
+
+export interface Job {
+  readonly id: string;
+  readonly externalId: string;
+  approach: Approach;
+  title: string;
+  description: string;
+  organisation: string;
+  location: fixedLocations[] | overseasLocations[];
+  grade: Grade | string;
+  assignmentType: Assignments;
+  personalSpec: string;
+  applyDetail: string;
+  closingDate: Date;
+  profession: Profession;  
+  recruitmentEmail: string;
+  contacts?: Contacts[];
+  nationalityRequirement?: string;
+  summary?: string;
+  applyUrl?: URL;
+  benefits?: string;
+  salary?: Salary;
+  jobNumbers?: number;
+  successProfileDetails?: string;
+  diversityStatement?: string;
+  disabilityConfident?: string;
+  dcStatus?: DCStatus;
+  redeploymentScheme?: string;
+  prisonScheme?: string;
+  veteranScheme?: string;
+  criminalRecordCheck?: string;
+  complaintsInfo?: string;
+  workingForTheCivilService?: string;
+  eligibilityCheck?: string;
+  attachments?: JobAttachment[];
+}
 
 export interface JobAttachment {
   href: string;
@@ -20,19 +67,23 @@ export interface JobAttachment {
   fileSize?: string;
 }
 
+// aligns with BS7666 standard (adopted by Nova)
 export interface fixedLocations {
   uprn?: string;
+  paoText: string | undefined;
   saoText?: string;
-  paoText?: string;
   streetDescription?: string;
-  locality?: string;
-  townName?: string;
-  postTown?: string;
+  townName: string;
+  region: string;
   postcode?: string;
-  latitude?: number;
-  longitude?: number;
-  formattedAddress?: string;
-  fullAddressSearch?: string;
+  latitude: number;
+  longitude: number;
+}
+
+export interface overseasLocations {
+  countryName: string;
+  countryCode: string;
+  locationDisplay?: string;
 }
 
 export enum Approach {
@@ -49,6 +100,7 @@ export enum Assignments {
   Permanent = "Permanent"
 }
 
+// Nova data standard compliant
 export enum Grade {
   scs4 = "Senior Civil Service - Permanent Secretary",
   scs3 = "Senior Civil Service - Director General (PB3)",
@@ -63,6 +115,7 @@ export enum Grade {
   aa = "Administrative Assistant (AA)"
 }
 
+// Nova data standard compliant
 export enum Profession {
   Actuary = "Actuary",
   Commercial = "Commercial",
@@ -103,12 +156,6 @@ export enum DCStatus {
   Leader = "Disability Confident Leader"
 }
 
-export interface overseasLocations {
-  countryName: string;
-  countryCode: string;
-  locationDisplay?: string;
-}
-
 export interface Salary {
   minimum: number;
   maximum?: number;
@@ -121,50 +168,4 @@ export interface Contacts {
   contactName?: string;
   contactEmail?: string;
   contactPhone?: string;
-}
-
-export interface Job {
-  readonly id: string;
-  readonly externalId: string;
-  approach: Approach;
-  title: string;
-  description: string;
-  organisation: string;
-  location: fixedLocations[] | overseasLocations[];
-  grade: Grade | string;
-  assignmentType: Assignments;
-  personalSpec: string;
-  applyDetail: string;
-  closingDate: Date;
-  profession: Profession;  
-  recruitmentEmail: string;
-  contacts?: Contacts[];
-  nationalityRequirement?: string;
-  summary?: string;
-  applyUrl?: URL;
-  benefits?: string;
-  salary?: Salary;
-  jobNumbers?: number;
-  successProfileDetails?: string;
-  diversityStatement?: string;
-  disabilityConfident?: string;
-  dcStatus?: DCStatus;
-  redeploymentScheme?: string;
-  prisonScheme?: string;
-  veteranScheme?: string;
-  criminalRecordCheck?: string;
-  complaintsInfo?: string;
-  workingForTheCivilService?: string;
-  eligibilityCheck?: string;
-  attachments?: JobAttachment[];
-}
-
-export interface JobSearchResponse {
-  results: Job[];
-  total: number;
-  page: number;
-  pageSize: number;
-  totalPages: number;
-  query: string | null;
-  appliedFilters: string | null;
 }
