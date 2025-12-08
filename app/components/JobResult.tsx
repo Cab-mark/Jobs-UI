@@ -25,7 +25,7 @@ export default function JobResult({ jobs }: { jobs: JobResultItem[] }) {
         {jobs.map((job) => (
           <li key={job.id} className="govuk-!-margin-bottom-6">
             <h2 className="govuk-heading-m">
-                <Link className="govuk-link govuk-link--no-visited-state" href={`/job/${job.id}`}>
+                <Link className="govuk-link govuk-link--no-visited-state" href={`/job/${job.externalId}`}>
                     {job.title}
                 </Link>
             </h2>

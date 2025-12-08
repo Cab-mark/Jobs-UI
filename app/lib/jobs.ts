@@ -29,6 +29,10 @@ export function getJobById(id: string): Job | undefined {
   return jobs.find((job) => job.id === id);
 }
 
+export function getJobByExternalId(externalId: string): Job | undefined {
+  return jobs.find((job) => job.externalId === externalId);
+}
+
 export function getPaginatedJobs(page: number = 1, pageSize: number = 10): JobSearchResponse {
   const validPage = Math.max(1, page);
   const totalPages = Math.ceil(jobs.length / pageSize);

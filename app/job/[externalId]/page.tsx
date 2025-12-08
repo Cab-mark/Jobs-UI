@@ -1,16 +1,16 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { getJobById, Job } from "../../lib/jobs";
+import { getJobByExternalId, Job } from "../../lib/jobs";
 import JobDetails from "../../components/JobDetails";
 import JobAdvert from "@/app/components/JobAdvert";
 
 interface JobAdvertProps {
-  params: { id: string };
+  params: { externalId: string };
 }
 
 export async function generateMetadata({ params }: JobAdvertProps): Promise<Metadata> {
-  const { id } = await params;
-  const job = getJobById(id);
+  const { externalId } = await params;
+  const job = getJobByExternalId(externalId);
   return {
     title: job ? job.title : "Job not found",
     description: job ? job.description : "No job found for this ID.",
@@ -18,8 +18,8 @@ export async function generateMetadata({ params }: JobAdvertProps): Promise<Meta
 }
 
 export default async function JobAdvertPage({ params }: JobAdvertProps) {
-  const { id } = await params;
-  const job = getJobById(id);
+  const { externalId } = await params;
+  const job = getJobByExternalId(externalId);
   if (!job) return notFound();
 
   return (
@@ -38,7 +38,7 @@ export default async function JobAdvertPage({ params }: JobAdvertProps) {
           <>
             <h3 className="govuk-heading-s govuk-!-margin-top-4">Attachments</h3>
             <ul className="govuk-list">
-              {job.attachments.map((att, idx) => (
+              {job.attachments.map((att) => (
                 <li key={att.href}>
                   <a href={att.href} className="govuk-link" target="_blank" rel="noopener noreferrer">
                     {att.docName || 'Attachment'}

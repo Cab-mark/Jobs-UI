@@ -125,7 +125,7 @@ export interface Contacts {
 
 export interface Job {
   readonly id: string;
-  readonly externalId?: string;
+  readonly externalId: string;
   approach: Approach;
   title: string;
   description: string;
