@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 const navLinks = [
   { href: '/', text: 'Home', active: true },
-  { href: '/jobs', text: 'View all jobs', active: false },
+  { href: '/jobs', text: 'View jobs', active: false },
 ];
 
 // Define the links you want in the footer

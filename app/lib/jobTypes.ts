@@ -8,7 +8,7 @@ export interface JobResultItem {
   workingPattern: WorkingPattern[];
   workLocation: WorkLocation[];
   assignmentType: Assignments;
-  salary: Salary;
+  salary?: Salary;
   grade: Grade | string;
   dateClosing: Date;
   profession: Profession;
