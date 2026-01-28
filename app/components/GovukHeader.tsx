@@ -1,3 +1,5 @@
+import LoginButton from "./LoginButton";
+
 export default function GovukHeader() {
   return (
     <header className="govuk-header" data-module="govuk-header">
@@ -30,7 +32,10 @@ export default function GovukHeader() {
          <span className="govuk-header__product-name">Civil Service Jobs</span>
        </a>
      </div>
-  </div>
+     <div className="govuk-header__content">
+       <LoginButton />
+     </div>
+   </div>
 </header>
   );
 }

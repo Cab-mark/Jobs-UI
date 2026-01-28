@@ -6,7 +6,6 @@ import GovukHeader from "./components/GovukHeader";
 import ServiceNavigation from "./components/ServiceNavigation";
 import GovukFooter from "./components/GovukFooter";
 import PhaseBanner from "./components/PhaseBanner";
-import LoginButton from "./components/LoginButton";
 
 
 export const metadata: Metadata = {
@@ -52,7 +51,6 @@ export default function RootLayout({
         <PhaseBanner />
 
             <main className="govuk-main-wrapper" id="main-content" role="main">
-                <LoginButton />
                 {children}      
             </main>
 

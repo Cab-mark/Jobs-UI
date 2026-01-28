@@ -1,11 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import crypto from "crypto";
-
-const env = process.env.NODE_ENV?.toUpperCase() ?? "DEVELOPMENT";
-
-function getEnv(key: string) {
-  return process.env[`${key}_${env}`] ?? process.env[key];
-}
+import { DEFAULT_COOKIE_MAX_AGE, getEnv, isDevelopment } from "@/app/lib/env";
 
 export async function GET(_request: NextRequest) {
   const authorizationEndpoint = getEnv("GOVUK_ONELOGIN_AUTHORIZATION_URL");
@@ -24,6 +19,11 @@ export async function GET(_request: NextRequest) {
 
   const state = crypto.randomBytes(16).toString("hex");
   const nonce = crypto.randomBytes(16).toString("hex");
+  const codeVerifier = crypto.randomBytes(32).toString("base64url");
+  const codeChallenge = crypto
+    .createHash("sha256")
+    .update(codeVerifier)
+    .digest("base64url");
 
   const url = new URL(authorizationEndpoint);
   url.searchParams.set("response_type", "code");
@@ -32,6 +32,8 @@ export async function GET(_request: NextRequest) {
   url.searchParams.set("scope", scope);
   url.searchParams.set("state", state);
   url.searchParams.set("nonce", nonce);
+  url.searchParams.set("code_challenge", codeChallenge);
+  url.searchParams.set("code_challenge_method", "S256");
 
   const response = NextResponse.redirect(url.toString());
   response.cookies.set({
@@ -39,16 +41,27 @@ export async function GET(_request: NextRequest) {
     value: state,
     httpOnly: true,
     sameSite: "lax",
-    secure: true,
+    secure: !isDevelopment,
     path: "/",
+    maxAge: DEFAULT_COOKIE_MAX_AGE,
   });
   response.cookies.set({
     name: "govuk_oidc_nonce",
     value: nonce,
     httpOnly: true,
     sameSite: "lax",
-    secure: true,
+    secure: !isDevelopment,
     path: "/",
+    maxAge: DEFAULT_COOKIE_MAX_AGE,
+  });
+  response.cookies.set({
+    name: "govuk_oidc_code_verifier",
+    value: codeVerifier,
+    httpOnly: true,
+    sameSite: "lax",
+    secure: !isDevelopment,
+    path: "/",
+    maxAge: DEFAULT_COOKIE_MAX_AGE,
   });
 
   return response;
