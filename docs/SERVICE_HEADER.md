@@ -2,24 +2,27 @@
 
 ## Overview
 
-This application integrates the GOV.UK One Login service header (`@govuk-one-login/service-header`) to provide a consistent navigation experience for authenticated users.
+This application integrates the GOV.UK One Login service header (`@govuk-one-login/service-header`) to provide a consistent navigation experience for all users, with conditional authentication controls based on their login status.
 
 ## Features
 
-### Dynamic Header Display
+### Unified Header Design
 
-The application displays different headers based on authentication state:
+The application uses a **single header** for both authenticated and unauthenticated users:
+
+**Always displayed:**
+- GOV.UK One Login branding
+- Service name "Civil Service Jobs"
+- Navigation links: "Home" and "View jobs"
+
+**Conditional display based on authentication:**
 
 **When unauthenticated:**
-- Standard GOV.UK header with "Civil Service Jobs" branding
-- "Sign in with GOV.UK One Login" button
-- Service navigation links (Home, View jobs)
+- "Sign in" button linking to `/api/auth/login`
 
 **When authenticated:**
-- GOV.UK One Login service header (replaces standard header)
-- "GOV.UK One Login" link to account management
-- "Sign out" button
-- Service name "Civil Service Jobs" displayed in integrated service navigation section
+- "GOV.UK One Login" link to account management (https://home.account.gov.uk)
+- "Sign out" button linking to `/api/auth/logout`
 
 ### Authentication State Management
 
@@ -54,16 +57,15 @@ GOVUK_ONELOGIN_POST_LOGOUT_REDIRECT=/
 
 ### Components
 
-- **`OneLoginServiceHeader.tsx`**: The GOV.UK One Login service header that shows when authenticated, includes both the One Login section and service name
-- **`GovukHeader.tsx`**: The standard GOV.UK header that shows when NOT authenticated
-- **`ServiceNavigation.tsx`**: Service navigation that shows when NOT authenticated
+- **`OneLoginServiceHeader.tsx`**: The unified header component that renders for all users with conditional authentication controls
 - **`AuthContext.tsx`**: React context provider for managing authentication state
 - **`GovukInit.tsx`**: Initializes both GOV.UK Frontend and the One Login service header JavaScript
 
 ### API Routes
 
 - **`/api/auth/session`**: Returns the current authentication state (existing)
-- **`/api/auth/logout`**: Handles logout functionality (new)
+- **`/api/auth/login`**: Initiates the login flow (existing)
+- **`/api/auth/logout`**: Handles logout functionality
 
 ### Styling
 
