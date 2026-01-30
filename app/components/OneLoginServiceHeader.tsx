@@ -26,7 +26,6 @@ export default function OneLoginServiceHeader() {
                 fill="currentcolor"
                 className="rebranded-one-login-header__logotype" 
                 aria-label="GOV.UK">
-                <title>GOV.UK</title>
                 <g>
                   <circle cx="20" cy="17.6" r="3.7"></circle>
                   <circle cx="10.2" cy="23.5" r="3.7"></circle>

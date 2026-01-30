@@ -15,6 +15,26 @@ interface AuthContextType extends AuthState {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+async function fetchAuthenticationState(): Promise<AuthState> {
+  try {
+    const response = await fetch('/api/auth/session');
+    const data = await response.json();
+    return {
+      authenticated: data.authenticated || false,
+      loading: false,
+      expiresAt: data.expiresAt || null,
+      subject: data.subject || null,
+    };
+  } catch {
+    return {
+      authenticated: false,
+      loading: false,
+      expiresAt: null,
+      subject: null,
+    };
+  }
+}
+
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [authState, setAuthState] = useState<AuthState>({
     authenticated: false,
@@ -24,27 +44,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   });
 
   const checkAuth = async () => {
-    try {
-      const response = await fetch('/api/auth/session');
-      const data = await response.json();
-      setAuthState({
-        authenticated: data.authenticated || false,
-        loading: false,
-        expiresAt: data.expiresAt || null,
-        subject: data.subject || null,
-      });
-    } catch {
-      setAuthState({
-        authenticated: false,
-        loading: false,
-        expiresAt: null,
-        subject: null,
-      });
-    }
+    const newState = await fetchAuthenticationState();
+    setAuthState(newState);
   };
 
   useEffect(() => {
-    checkAuth();
+    const initAuth = async () => {
+      const initialState = await fetchAuthenticationState();
+      setAuthState(initialState);
+    };
+
+    initAuth();
   }, []);
 
   return (
