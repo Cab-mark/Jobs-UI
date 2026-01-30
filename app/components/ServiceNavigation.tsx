@@ -4,6 +4,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation'; // Hook to get the current route
+import { useAuth } from '../contexts/AuthContext';
 
 // --- TypeScript Interfaces ---
 
@@ -22,10 +23,16 @@ interface ServiceNavigationProps {
  * GOV.UK Service Navigation Component
  * * Renders a service navigation bar and automatically highlights the active link 
  * based on the current Next.js route path.
+ * * Only shows when user is NOT authenticated (when authenticated, navigation is part of OneLoginServiceHeader)
  */
 export default function ServiceNavigation({ links }: ServiceNavigationProps) {
-  // 1. Get the current pathname
+  const { authenticated, loading } = useAuth();
   const currentPath = usePathname();
+
+  // Don't render if authenticated (navigation is in the OneLoginServiceHeader instead)
+  if (authenticated || loading) {
+    return null;
+  }
 
   if (!links || links.length === 0) {
     return null;
