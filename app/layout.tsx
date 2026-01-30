@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import "./globals.scss";
 import GovukInit from "./GovukInit";
 import Skip from "./components/Skip";
-import GovukHeader from "./components/GovukHeader";
-import ServiceNavigation from "./components/ServiceNavigation";
 import GovukFooter from "./components/GovukFooter";
 import PhaseBanner from "./components/PhaseBanner";
+import OneLoginServiceHeader from "./components/OneLoginServiceHeader";
+import { AuthProvider } from "./contexts/AuthContext";
 
 
 export const metadata: Metadata = {
@@ -17,8 +17,8 @@ export const metadata: Metadata = {
 };
 
 const navLinks = [
-  { href: '/', text: 'Home', active: true },
-  { href: '/jobs', text: 'View jobs', active: false },
+  { href: '/', text: 'Home' },
+  { href: '/jobs', text: 'View jobs' },
 ];
 
 // Define the links you want in the footer
@@ -42,22 +42,21 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/assets/rebrand/images/govuk-icon-180.png" />
       </head>
       <body className="govuk-template__body govuk-frontend-supported">
-        <GovukInit />
-        <Skip />
-        <GovukHeader />
+        <AuthProvider>
+          <GovukInit />
+          <Skip />
+          <OneLoginServiceHeader navLinks={navLinks} />
+          
+          <PhaseBanner />
 
-        <ServiceNavigation links={navLinks} />
-        
-        <PhaseBanner />
+              <main className="govuk-main-wrapper" id="main-content" role="main">
+                  {children}      
+              </main>
 
-            <main className="govuk-main-wrapper" id="main-content" role="main">
-                {children}      
-            </main>
-
-        <GovukFooter 
-          links={footerLinks}
-        />
-
+          <GovukFooter 
+            links={footerLinks}
+          />
+        </AuthProvider>
       </body>
     </html>
   );

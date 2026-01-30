@@ -24,19 +24,16 @@ interface ServiceNavigationProps {
  * based on the current Next.js route path.
  */
 export default function ServiceNavigation({ links }: ServiceNavigationProps) {
-  // 1. Get the current pathname
   const currentPath = usePathname();
 
   if (!links || links.length === 0) {
     return null;
   }
   
-  // 2. Map links to dynamically calculate the active state
+  // Map links to dynamically calculate the active state
   const activeLinks = links.map(link => ({
     ...link,
     // Determine if the link is active by comparing its href with the current path
-    // We use a simple equality check here. For complex nested routes, you might
-    // need a more sophisticated check (e.g., currentPath.startsWith(link.href)).
     active: currentPath === link.href,
   }));
 
@@ -53,13 +50,11 @@ export default function ServiceNavigation({ links }: ServiceNavigationProps) {
               {activeLinks.map((link, index) => (
                 <li 
                   key={index} 
-                  // Use the dynamically calculated 'active' property
                   className={`govuk-service-navigation__item${link.active ? ' govuk-service-navigation__item--active' : ''}`}
                 >
                   <Link 
                     href={link.href} 
                     className="govuk-service-navigation__link"
-                    // Set aria-current for accessibility
                     aria-current={link.active ? 'page' : undefined}
                   >
                     {link.text}

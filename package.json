@@ -10,6 +10,7 @@
     "postinstall": "cp -r ./node_modules/govuk-frontend/dist/govuk/assets ./public/"
   },
   "dependencies": {
+    "@govuk-one-login/service-header": "^5.0.0",
     "govuk-frontend": "^5.13.0",
     "jsonwebtoken": "^9.0.3",
     "jwt-decode": "^4.0.0",
@@ -28,6 +29,6 @@
     "baseline-browser-mapping": "^2.9.2",
     "eslint": "^9",
     "eslint-config-next": "16.0.3",
-    "typescript": "^5"
+    "typescript": "5.9.3"
   }
 }
