@@ -17,12 +17,16 @@ export async function GET(request: NextRequest) {
     ? `${forwardedProto ?? request.nextUrl.protocol}://${forwardedHost}`
     : request.nextUrl.origin;
   
+  // Get the ID token from cookie (needed for GOV.UK One Login logout)
+  const idToken = request.cookies.get("govuk_id_token")?.value;
+  
   let finalRedirectUrl: string;
   
   // If GOV.UK One Login logout URL is configured, redirect there
-  if (logoutUrl) {
+  if (logoutUrl && idToken) {
     const postLogoutRedirectUri = new URL(postLogoutRedirect, baseUrl).toString();
-    finalRedirectUrl = `${logoutUrl}?post_logout_redirect_uri=${encodeURIComponent(postLogoutRedirectUri)}`;
+    // GOV.UK One Login requires id_token_hint parameter for proper logout
+    finalRedirectUrl = `${logoutUrl}?id_token_hint=${encodeURIComponent(idToken)}&post_logout_redirect_uri=${encodeURIComponent(postLogoutRedirectUri)}`;
   } else {
     // Otherwise, just redirect to the post-logout page
     finalRedirectUrl = new URL(postLogoutRedirect, baseUrl).toString();

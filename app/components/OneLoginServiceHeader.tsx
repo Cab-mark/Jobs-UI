@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useAuth } from '../contexts/AuthContext';
+import { useEffect, useState } from 'react';
 
 interface NavLink {
   href: string;
@@ -16,11 +17,15 @@ interface OneLoginServiceHeaderProps {
 export default function OneLoginServiceHeader({ navLinks }: OneLoginServiceHeaderProps) {
   const { authenticated, loading } = useAuth();
   const currentPath = usePathname();
+  const [isClient, setIsClient] = useState(false);
 
-  // Show loading state briefly
-  if (loading) {
-    return null;
-  }
+  // Enable client-side rendering after hydration
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  // Determine auth button to show - during SSR and hydration, show unauthenticated state
+  const showAuthMenu = isClient && authenticated;
 
   return (
     <header className="rebranded-cross-service-header" data-module="one-login-header">
@@ -38,6 +43,7 @@ export default function OneLoginServiceHeader({ navLinks }: OneLoginServiceHeade
                 fill="currentcolor"
                 className="rebranded-one-login-header__logotype" 
                 aria-label="GOV.UK">
+                <title>GOV.UK</title>
                 <g>
                   <circle cx="20" cy="17.6" r="3.7"></circle>
                   <circle cx="10.2" cy="23.5" r="3.7"></circle>
@@ -54,7 +60,7 @@ export default function OneLoginServiceHeader({ navLinks }: OneLoginServiceHeade
               </svg>
             </a>
           </div>
-          {authenticated ? (
+          {showAuthMenu ? (
             <>
               <button type="button" 
                 aria-controls="one-login-header__nav" 
@@ -94,11 +100,35 @@ export default function OneLoginServiceHeader({ navLinks }: OneLoginServiceHeade
               </nav>
             </>
           ) : (
-            <div className="rebranded-one-login-header__nav">
-              <a href="/api/auth/login" className="govuk-button" data-module="govuk-button">
-                Sign in
-              </a>
-            </div>
+            <>
+              <button type="button" 
+                aria-controls="one-login-header__nav" 
+                aria-label="Show account menu" 
+                data-open-class="rebranded-cross-service-header__toggle--open" 
+                data-label-for-show="Show account menu" 
+                data-label-for-hide="Hide account menu" 
+                aria-expanded="false" 
+                className="rebranded-cross-service-header__toggle js-x-header-toggle">
+                <span className="rebranded-cross-service-header__toggle-content-wrapper">
+                  <span className="rebranded-cross-service-header__toggle-content">Account</span>
+                </span>
+              </button>
+              <nav aria-label="GOV.UK One Login" className="rebranded-one-login-header__nav" data-open-class="rebranded-one-login-header__nav--open" id="one-login-header__nav">
+                <ul className="rebranded-one-login-header__nav__list">
+                  <li className="rebranded-one-login-header__nav__list-item">
+                    <a className="rebranded-one-login-header__nav__link" href="/api/auth/login">
+                      <span className="rebranded-one-login-header__nav__link-content">
+                        <svg focusable="false" xmlns="http://www.w3.org/2000/svg" width="15" height="30" viewBox="150 150 250 250" fill="currentcolor" className="rebranded-cross-service-header__logo rebranded-cross-service-header__logo--nav" aria-hidden="true">
+                          <path d="M300.002 312.261C249.445 312.261 208.346 271.165 208.346 220.608C208.346 170.051 249.445 128.954 300.002 128.954C350.559 128.954 391.655 170.051 391.655 220.608C391.655 271.165 350.559 312.261 300.002 312.261ZM300.002 170.892C272.673 170.892 250.389 193.175 250.389 220.504C250.389 247.83 272.673 270.113 300.002 270.113C327.33 270.113 349.611 247.83 349.611 220.504C349.611 193.175 327.33 170.892 300.002 170.892Z"></path>
+                          <path d="M221.275 471.046H179.231V365.202H420.769V407.246H221.275V471.046Z"></path>
+                        </svg>
+                        Sign in or create an account
+                      </span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </>
           )}
         </div>
       </div>
@@ -106,7 +136,9 @@ export default function OneLoginServiceHeader({ navLinks }: OneLoginServiceHeade
         <div className="govuk-width-container">
           <div className="govuk-service-navigation__container">
             <span className="govuk-service-navigation__service-name">
-              <span className="govuk-service-navigation__text">Civil Service Jobs</span>
+              <a href="/" className="govuk-service-navigation__link">
+                Civil Service Jobs
+              </a>
             </span>
             <nav aria-label="Menu" className="govuk-service-navigation__wrapper">
               <button type="button" className="govuk-service-navigation__toggle govuk-js-service-navigation-toggle" aria-controls="navigation" hidden>
