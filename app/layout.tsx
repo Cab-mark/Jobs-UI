@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import "./globals.scss";
 import GovukInit from "./GovukInit";
 import Skip from "./components/Skip";
-import GovukHeader from "./components/GovukHeader";
-import ServiceNavigation from "./components/ServiceNavigation";
 import GovukFooter from "./components/GovukFooter";
 import PhaseBanner from "./components/PhaseBanner";
 import OneLoginServiceHeader from "./components/OneLoginServiceHeader";
@@ -17,11 +15,6 @@ export const metadata: Metadata = {
   },
   description: "A job search platform for the UK Civil Service.",
 };
-
-const navLinks = [
-  { href: '/', text: 'Home', active: true },
-  { href: '/jobs', text: 'View jobs', active: false },
-];
 
 // Define the links you want in the footer
 const footerLinks = [
@@ -48,9 +41,6 @@ export default function RootLayout({
           <GovukInit />
           <Skip />
           <OneLoginServiceHeader />
-          <GovukHeader />
-
-          <ServiceNavigation links={navLinks} />
           
           <PhaseBanner />
 
