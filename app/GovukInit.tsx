@@ -13,6 +13,14 @@ export default function GovukInit() {
       console.log("[GovukInit] govuk-frontend loaded, calling initAll()");
       initAll();
     });
+    
+    // Initialize One Login service header
+    import("@govuk-one-login/service-header/dist/scripts/service-header.js").then(() => {
+      console.log("[GovukInit] service-header loaded, initializing");
+      // The service header script will auto-initialize with data-module="one-login-header"
+    }).catch((err) => {
+      console.log("[GovukInit] service-header script not loaded:", err);
+    });
   }, [pathname]);
 
   return null;
