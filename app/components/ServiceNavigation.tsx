@@ -4,7 +4,6 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation'; // Hook to get the current route
-import { useAuth } from '../contexts/AuthContext';
 
 // --- TypeScript Interfaces ---
 
@@ -23,27 +22,18 @@ interface ServiceNavigationProps {
  * GOV.UK Service Navigation Component
  * * Renders a service navigation bar and automatically highlights the active link 
  * based on the current Next.js route path.
- * * Only shows when user is NOT authenticated (when authenticated, navigation is part of OneLoginServiceHeader)
  */
 export default function ServiceNavigation({ links }: ServiceNavigationProps) {
-  const { authenticated, loading } = useAuth();
   const currentPath = usePathname();
-
-  // Don't render if authenticated (navigation is in the OneLoginServiceHeader instead)
-  if (authenticated || loading) {
-    return null;
-  }
 
   if (!links || links.length === 0) {
     return null;
   }
   
-  // 2. Map links to dynamically calculate the active state
+  // Map links to dynamically calculate the active state
   const activeLinks = links.map(link => ({
     ...link,
     // Determine if the link is active by comparing its href with the current path
-    // We use a simple equality check here. For complex nested routes, you might
-    // need a more sophisticated check (e.g., currentPath.startsWith(link.href)).
     active: currentPath === link.href,
   }));
 
@@ -60,13 +50,11 @@ export default function ServiceNavigation({ links }: ServiceNavigationProps) {
               {activeLinks.map((link, index) => (
                 <li 
                   key={index} 
-                  // Use the dynamically calculated 'active' property
                   className={`govuk-service-navigation__item${link.active ? ' govuk-service-navigation__item--active' : ''}`}
                 >
                   <Link 
                     href={link.href} 
                     className="govuk-service-navigation__link"
-                    // Set aria-current for accessibility
                     aria-current={link.active ? 'page' : undefined}
                   >
                     {link.text}

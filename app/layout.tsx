@@ -16,6 +16,11 @@ export const metadata: Metadata = {
   description: "A job search platform for the UK Civil Service.",
 };
 
+const navLinks = [
+  { href: '/', text: 'Home' },
+  { href: '/jobs', text: 'View jobs' },
+];
+
 // Define the links you want in the footer
 const footerLinks = [
   { href: '/cookies', text: 'Cookies' },
@@ -40,7 +45,7 @@ export default function RootLayout({
         <AuthProvider>
           <GovukInit />
           <Skip />
-          <OneLoginServiceHeader />
+          <OneLoginServiceHeader navLinks={navLinks} />
           
           <PhaseBanner />
 

@@ -4,12 +4,16 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useAuth } from '../contexts/AuthContext';
 
-const navLinks = [
-  { href: '/', text: 'Home' },
-  { href: '/jobs', text: 'View jobs' },
-];
+interface NavLink {
+  href: string;
+  text: string;
+}
 
-export default function OneLoginServiceHeader() {
+interface OneLoginServiceHeaderProps {
+  navLinks: NavLink[];
+}
+
+export default function OneLoginServiceHeader({ navLinks }: OneLoginServiceHeaderProps) {
   const { authenticated, loading } = useAuth();
   const currentPath = usePathname();
 

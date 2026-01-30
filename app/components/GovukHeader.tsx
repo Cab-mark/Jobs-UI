@@ -1,16 +1,6 @@
-'use client';
-
-import { useAuth } from '../contexts/AuthContext';
 import LoginButton from "./LoginButton";
 
 export default function GovukHeader() {
-  const { authenticated, loading } = useAuth();
-
-  // Don't render the standard header if authenticated (the OneLoginServiceHeader will show instead)
-  if (authenticated || loading) {
-    return null;
-  }
-
   return (
     <header className="govuk-header" data-module="govuk-header">
   <div className="govuk-header__container govuk-width-container">
@@ -49,3 +39,4 @@ export default function GovukHeader() {
 </header>
   );
 }
+
