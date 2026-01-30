@@ -6,22 +6,28 @@ This application integrates the GOV.UK One Login service header (`@govuk-one-log
 
 ## Features
 
+### Dynamic Header Display
+
+The application displays different headers based on authentication state:
+
+**When unauthenticated:**
+- Standard GOV.UK header with "Civil Service Jobs" branding
+- "Sign in with GOV.UK One Login" button
+- Service navigation links (Home, View jobs)
+
+**When authenticated:**
+- GOV.UK One Login service header (replaces standard header)
+- "GOV.UK One Login" link to account management
+- "Sign out" button
+- Service name "Civil Service Jobs" displayed in integrated service navigation section
+
 ### Authentication State Management
 
 The application uses a React Context (`AuthContext`) to manage user authentication state throughout the application. The context:
 
-- Checks authentication status on app load
+- Checks authentication status on app load via `/api/auth/session`
 - Provides the authentication state to all components
 - Can be used to re-check authentication status when needed
-
-### Dynamic Header Display
-
-The service header is **only displayed when a user is authenticated**. When unauthenticated, users see the standard GOV.UK header with a "Sign in with GOV.UK One Login" button.
-
-**For authenticated users**, the service header displays:
-- GOV.UK One Login branding
-- A link to "GOV.UK One Login" (https://home.account.gov.uk) where users can manage their account
-- A "Sign out" link that logs the user out of both the service and GOV.UK One Login
 
 ### Sign Out Functionality
 
@@ -48,7 +54,9 @@ GOVUK_ONELOGIN_POST_LOGOUT_REDIRECT=/
 
 ### Components
 
-- **`OneLoginServiceHeader.tsx`**: The main service header component that conditionally renders based on authentication state
+- **`OneLoginServiceHeader.tsx`**: The GOV.UK One Login service header that shows when authenticated, includes both the One Login section and service name
+- **`GovukHeader.tsx`**: The standard GOV.UK header that shows when NOT authenticated
+- **`ServiceNavigation.tsx`**: Service navigation that shows when NOT authenticated
 - **`AuthContext.tsx`**: React context provider for managing authentication state
 - **`GovukInit.tsx`**: Initializes both GOV.UK Frontend and the One Login service header JavaScript
 
@@ -64,24 +72,6 @@ The service header styles are imported from `@govuk-one-login/service-header/dis
 ### JavaScript Initialization
 
 The service header JavaScript is loaded dynamically in `GovukInit.tsx` to enable the mobile menu toggle functionality.
-
-## Testing
-
-### Unauthenticated State
-
-When not authenticated, the service header should **not be visible**. You should only see:
-- The standard GOV.UK header with "Civil Service Jobs"
-- A "Sign in with GOV.UK One Login" button
-
-### Authenticated State
-
-When authenticated (after signing in via `/api/auth/login`):
-1. The GOV.UK One Login service header should appear above the standard header
-2. The header should show:
-   - GOV.UK branding
-   - "GOV.UK One Login" link
-   - "Sign out" button
-3. Clicking "Sign out" should clear the session and redirect to the home page
 
 ## Accessibility
 
