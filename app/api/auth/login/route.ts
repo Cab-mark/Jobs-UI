@@ -3,6 +3,7 @@ import crypto from "crypto";
 import { DEFAULT_COOKIE_MAX_AGE, getEnv, isDevelopment } from "@/app/lib/env";
 
 export async function GET(_request: NextRequest) {
+  console.log("=== GOV.UK One Login Login Route ===");
   const authorizationEndpoint = getEnv("GOVUK_ONELOGIN_AUTHORIZATION_URL");
   const clientId = getEnv("GOVUK_ONELOGIN_CLIENT_ID");
   const redirectUri = getEnv("GOVUK_ONELOGIN_REDIRECT_URI");
@@ -10,7 +11,15 @@ export async function GET(_request: NextRequest) {
     getEnv("GOVUK_ONELOGIN_SCOPE") ??
     "openid email phone offline_access profile";
 
+  console.log("Configuration:", {
+    authorizationEndpoint,
+    clientId,
+    redirectUri,
+    scope,
+  });
+
   if (!authorizationEndpoint || !clientId || !redirectUri) {
+    console.error("Missing required configuration");
     return NextResponse.json(
       { error: "GOV.UK One Login is not configured" },
       { status: 500 },
